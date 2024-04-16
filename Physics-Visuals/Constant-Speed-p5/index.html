@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
     <script src="../../SMACS-Library/SMACS-p5.js"></script>
     <script src="sketch.js"></script>
   </head>
   <body>
-    <main></main>
+    <main class="flex flex-col">
+      <div>Min(10m/s), Max(10m/s)</div>
+      <div>
+        <p>X Velocity: <span id="x-velocity-text"></span></p>
+        <input
+          type="range"
+          min="-10"
+          max="10"
+          value="0"
+          step="1"
+          id="x-velocity-input"
+        />
+      </div>
+      <div>
+        <p>Y Velocity <span id="y-velocity-text"></span></p>
+        <input
+          type="range"
+          min="-10"
+          max="10"
+          value="0"
+          step="1"
+          id="y-velocity-input"
+        />
+      </div>
+    </main>
   </body>
 </html>
