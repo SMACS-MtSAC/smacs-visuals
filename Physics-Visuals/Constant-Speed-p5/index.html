@@ -8,28 +8,30 @@
   </head>
   <body>
     <main class="flex flex-col">
-      <div>Min(10m/s), Max(10m/s)</div>
-      <div>
-        <p>X Velocity: <span id="x-velocity-text"></span></p>
-        <input
-          type="range"
-          min="-10"
-          max="10"
-          value="0"
-          step="1"
-          id="x-velocity-input"
-        />
-      </div>
-      <div>
-        <p>Y Velocity <span id="y-velocity-text"></span></p>
-        <input
-          type="range"
-          min="-10"
-          max="10"
-          value="0"
-          step="1"
-          id="y-velocity-input"
-        />
+      <div class="">Min(10m/s), Max(10m/s)</div>
+      <div class="flex flex-row">
+        <div>
+          <p>X Velocity: <span id="x-velocity-text"></span></p>
+          <input
+            type="range"
+            min="-10"
+            max="10"
+            value="0"
+            step="1"
+            id="x-velocity-input"
+          />
+        </div>
+        <div>
+          <p>Y Velocity <span id="y-velocity-text"></span></p>
+          <input
+            type="range"
+            min="-10"
+            max="10"
+            value="0"
+            step="1"
+            id="y-velocity-input"
+          />
+        </div>
       </div>
     </main>
   </body>

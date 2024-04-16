@@ -6,15 +6,17 @@ let velocityYInput;
 let velocityYText;
 
 // Physics Setup Values
-let radius = toScale(1, scaleOfUnit);
+let radius = toScale(1.5, scaleOfUnit);
 let posX = toScale(3, scaleOfUnit);
-let posY = toScale(8, scaleOfUnit);
+let posY = toScale(5, scaleOfUnit);
 let velocityX = toScale(2, scaleOfUnit);
 let velocityY = toScale(0, scaleOfUnit);
 let time = 0;
 
 function setup() {
-  createCanvas(400, 200);
+  let canvas = createCanvas(400, 200);
+  canvas.style("width", "100%");
+  canvas.style("height", "auto");
   velocityXInput = select("#x-velocity-input");
   velocityXText = select("#x-velocity-text");
   velocityXInput.input(updateVelocityX);
@@ -52,18 +54,6 @@ function draw() {
   coordinateSystem(0 + scaleOfUnit, height - scaleOfUnit, scaleOfUnit, true);
   fill(255, 0, 0);
   circle(posX, posY, radius);
-}
-
-function toScale(value, scale) {
-  return value * scale;
-}
-
-function toUnit(value, scale) {
-  return value / scale;
-}
-
-function toTime(value, deltaFrameRate) {
-  return value * deltaFrameRate;
 }
 
 function updateVelocityX() {

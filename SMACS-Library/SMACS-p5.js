@@ -26,3 +26,26 @@ function writeText(stringText, x, y) {
   text(stringText, x, -y);
   pop();
 }
+
+/**
+ *
+ * @param {double} value
+ * @param {double} scale
+ * Scales the value by the scale factor.
+ * Its used well on pair with the coordinate system function.
+ * @returns {double} The scaled value.
+ */
+function toScale(value, scale) {
+  return value * scale;
+}
+/**
+ *
+ * @param {double} value
+ * @param {double} scale
+ * Unscales the value by the scale factor.
+ * Its used well on pair with the coordinate system function.
+ * @returns {double} The unscaled value.
+ */
+function toUnit(value, scale) {
+  return value / scale;
+}
