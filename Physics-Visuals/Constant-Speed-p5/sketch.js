@@ -1,60 +1,57 @@
 // P5 Setup Values
 const scaleOfUnit = 20;
-const unitToScaleValue = 0.05;
-const frameRateValue = 30;
-let time = 0;
+let velocityXInput;
+let velocityXText;
+let velocityYInput;
+let velocityYText;
 
 // Physics Setup Values
-let gravity = toScale(9.8, scaleOfUnit);
-let posX = toScale(0, scaleOfUnit);
-let posY = toScale(0, scaleOfUnit);
-let velocityY = toScale(20, scaleOfUnit);
-let velocityX = toScale(3, scaleOfUnit);
+let radius = toScale(1, scaleOfUnit);
+let posX = toScale(3, scaleOfUnit);
+let posY = toScale(8, scaleOfUnit);
+let velocityX = toScale(2, scaleOfUnit);
+let velocityY = toScale(0, scaleOfUnit);
+let time = 0;
 
 function setup() {
-  createCanvas(1200, 800);
-  frameRate(frameRateValue);
-  // let button = createButton("Run Function");
-  // button.mousePressed(runFunction);
+  createCanvas(400, 200);
+  velocityXInput = select("#x-velocity-input");
+  velocityXText = select("#x-velocity-text");
+  velocityXInput.input(updateVelocityX);
+  velocityXInput.value(2);
+  updateVelocityX();
 
-  circle(posX, posY, toScale(1, scaleOfUnit));
+  velocityYInput = select("#y-velocity-input");
+  velocityYText = select("#y-velocity-text");
+  velocityYInput.input(updateVelocityY);
+  velocityYInput.value(0);
+  updateVelocityY();
 }
 
 function draw() {
-  if (time < 10) {
-    dTime = deltaTime * 0.001;
-    dXpos = velocityX * dTime;
-    dYpos = velocityY * dTime;
-    deltaVY = gravity * dTime;
-    posX += dXpos;
-    posY += dYpos;
-    velocityY -= deltaVY;
-    if (posY < 0) {
-      velocityY = -velocityY;
-    }
-
-    background(220);
-    coordinateSystem(0 + scaleOfUnit, height - scaleOfUnit, scaleOfUnit, true);
-    circle(posX, posY, toScale(1, scaleOfUnit));
-    writeText(
-      "Time: " + time.toFixed(2) + "s",
-      toScale(10, scaleOfUnit),
-      toScale(10, scaleOfUnit)
-    );
-    writeText(
-      "X: " + toUnit(posX, scaleOfUnit).toFixed(2) + "m",
-      toScale(10, scaleOfUnit),
-      toScale(9, scaleOfUnit)
-    );
-    writeText(
-      "Y: " + toUnit(posY, scaleOfUnit).toFixed(2) + "m",
-      toScale(10, scaleOfUnit),
-      toScale(8, scaleOfUnit)
-    );
-    time += dTime;
-  } else {
-    noLoop();
+  dTime = deltaTime * 0.001;
+  dXpos = velocityX * dTime;
+  dYpos = velocityY * dTime;
+  posX += dXpos;
+  posY += dYpos;
+  if (posX > width - scaleOfUnit) {
+    posX = 0;
   }
+  if (posX < 0) {
+    posX = width - scaleOfUnit;
+  }
+  if (posY > height - scaleOfUnit) {
+    posY = 0;
+  }
+  if (posY < 0) {
+    posY = height - scaleOfUnit;
+  }
+
+  background(300);
+  fill(color(0, 0, 0));
+  coordinateSystem(0 + scaleOfUnit, height - scaleOfUnit, scaleOfUnit, true);
+  fill(255, 0, 0);
+  circle(posX, posY, radius);
 }
 
 function toScale(value, scale) {
@@ -67,4 +64,14 @@ function toUnit(value, scale) {
 
 function toTime(value, deltaFrameRate) {
   return value * deltaFrameRate;
+}
+
+function updateVelocityX() {
+  velocityX = toScale(velocityXInput.value(), scaleOfUnit);
+  velocityXText.html(velocityXInput.value() + "m/s");
+}
+
+function updateVelocityY() {
+  velocityY = toScale(velocityYInput.value(), scaleOfUnit);
+  velocityYText.html(velocityYInput.value() + "m/s");
 }
