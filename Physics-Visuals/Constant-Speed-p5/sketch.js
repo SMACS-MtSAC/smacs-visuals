@@ -14,9 +14,7 @@ let velocityY = toScale(0, scaleOfUnit);
 let time = 0;
 
 function setup() {
-  let canvas = createCanvas(400, 200);
-  canvas.style("width", "100%");
-  canvas.style("height", "auto");
+  createCanvas(400, 200);
   velocityXInput = select("#x-velocity-input");
   velocityXText = select("#x-velocity-text");
   velocityXInput.input(updateVelocityX);
